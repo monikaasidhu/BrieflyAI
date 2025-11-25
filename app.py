@@ -113,7 +113,7 @@ def main():
                     
                     # 2. Summarization
                     with st.spinner("Summarizing..."):
-                        summary = summarizer(f"summarize: {text}", max_length=130, min_length=30, do_sample=False)
+                        summary = summarizer(f"summarize: {text}", max_length=300, min_length=30, do_sample=False)
                         st.success("📝 **Executive Brief:**")
                         st.write(summary[0]['summary_text'])
                         
@@ -121,4 +121,5 @@ def main():
                     st.error(f"Processing Error: {e}")
 
 if __name__ == "__main__":
+
     main()
