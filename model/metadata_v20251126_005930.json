@@ -1,0 +1,18 @@
+{
+  "version_id": "20251126_005930",
+  "accuracy": 0.9889366933005531,
+  "algorithm": "MultinomialNB + TF-IDF (Strict)",
+  "class_labels": [
+    "Medical Triage",
+    "IT Support",
+    "Legal & Compliance",
+    "Logistics"
+  ],
+  "training_date": "2025-11-26T00:59:30.795946",
+  "categories_mapping": {
+    "sci.med": "Medical Triage",
+    "comp.graphics": "IT Support",
+    "talk.politics.misc": "Legal & Compliance",
+    "rec.autos": "Logistics"
+  }
+}
