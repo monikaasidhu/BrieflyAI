@@ -1,9 +1,3 @@
-"""
-BrieflyAI - Application (Final Production Version)
-==================================================
-Streamlit UI for Document Routing & Summarization.
-"""
-
 import streamlit as st
 import json
 import os
@@ -11,14 +5,14 @@ import warnings
 
 warnings.filterwarnings('ignore')
 
-# --- PAGE CONFIG ---
+# PAGE CONFIG 
 st.set_page_config(page_title="BrieflyAI", page_icon="⚡", layout="wide")
 
-# --- PATHS ---
+# PATHS
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 
-# --- LOADERS ---
+# LOADERS
 @st.cache_resource
 def load_dl_model():
     """Loads T5 Model with lazy import to prevent startup crashes."""
@@ -60,7 +54,7 @@ def load_ml_model():
     except Exception as e:
         return None, None, str(e)
 
-# --- UI LOGIC ---
+# UI LOGIC
 def main():
     st.title("⚡ BrieflyAI: Intelligent Document Router")
     st.markdown("---")
@@ -123,3 +117,4 @@ def main():
 if __name__ == "__main__":
 
     main()
+
