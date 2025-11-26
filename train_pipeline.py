@@ -1,12 +1,3 @@
-"""
-BrieflyAI Training Pipeline (Strict Generalization Version)
-===========================================================
-Prevents 'Mugging Up' (Overfitting) by:
-1. Splitting files into actual documents using 'From:' delimiter.
-2. Removing metadata headers so the model MUST read the content.
-3. Applying statistical filtering (min_df/max_df) to ignore noise.
-"""
-
 import os
 import json
 import pickle
@@ -19,11 +10,11 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-# Setup logging
+#Setup logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger()
 
-# --- CONFIGURATION ---
+#CONFIGURATION 
 CATEGORIES = ['sci.med', 'comp.graphics', 'talk.politics.misc', 'rec.autos']
 
 BUSINESS_LABELS = {
@@ -33,7 +24,7 @@ BUSINESS_LABELS = {
     'rec.autos': 'Logistics'
 }
 
-# --- PATH SETUP ---
+#PATH SETUP
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODELS_DIR = os.path.join(BASE_DIR, "models")
 DATA_CACHE = os.path.join(BASE_DIR, "data_cache")
@@ -77,18 +68,11 @@ def load_and_prepare_data():
             logger.info(f"   ...Processing {filename}")
             with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
                 raw_content = f.read()
-                
-                # SMART SPLIT: The 20Newsgroup text files usually start new emails with "From:"
-                # We split by "From:" to separate distinct documents.
-                # If "From:" isn't the separator in your specific txt dump, fall back to double newline.
                 raw_docs = raw_content.split('From: ')
                 
                 valid_docs = []
                 for doc in raw_docs:
-                    # Clean the headers out
                     cleaned_text = clean_document(doc)
-                    
-                    # Only keep if it has substantial body text (more than 50 chars)
                     if len(cleaned_text) > 50:
                         valid_docs.append(cleaned_text)
                 
@@ -202,4 +186,5 @@ def main():
     logger.info("="*60)
 
 if __name__ == "__main__":
+
     main()
